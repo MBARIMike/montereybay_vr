@@ -27,7 +27,7 @@ Transform {
 	  }
 
 	  texture	ImageTexture {
-	    url	"../../forDon/mbaflyrec.png"
+	    url	"mbaflyrec.png"
 	  }
 
 	}
