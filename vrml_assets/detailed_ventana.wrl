@@ -1,0 +1,950 @@
+#VRML V2.0 utf8
+
+# File Name: ventana_inline.wrl
+
+WorldInfo {
+         title "MBARI Ventana ROV inline model for MBARI demo"
+			info [
+         	" AUTHOR:  Major James Breitinger, USMC",
+				" CREATED: For Naval Postgraduate School course CS4202 completion",
+				"          requirement in conjunction with a project for MBARI",
+				" DATE:    September 1998",
+			]
+}
+
+NavigationInfo { type "EXAMINE" }
+
+Viewpoint {
+	description "Front View"
+	orientation 0 1.0 0 3.142
+	position 0.0 0.0 -20.0
+}
+
+# Ventana Top
+   Group {
+      children [
+			Transform {
+            rotation 1.0 0.0 0.0 -1.57
+               children [
+                  Shape {
+                     appearance Appearance {
+                        material Material {
+                           emissiveColor 0.88 0.30 0.2
+                           diffuseColor 0.88 0.30 0.2 
+                           specularColor 0.82 0.28 0.28
+                           shininess 0.8 
+                        }
+                     }
+                     geometry Extrusion {
+                        creaseAngle 3.142
+                        crossSection [
+                        # modified SemiCircle for Top of ROV
+                          -3.0  0.0,  -3.0  1.7,
+                          -2.95 1.8,  -2.9  1.9,
+                          -2.85 2.0,   2.85 2.0,
+                           2.9  1.9,   2.95 1.8,
+                           3.0  1.7,   3.0  0.0,
+                          -3.0  0.0
+                        ]
+                        spine [
+                        # Straight Line
+                           0.0 -3.5 0.0,  0.0 -3.0  0.0,
+                           0.0  2.0 0.0,  0.0  3.3  0.0,
+                           0.0  3.4 0.0,  0.0  3.45 0.0,
+                           0.0  3.5 0.0                             
+                        ]
+                        scale [
+                           1.0 0.1, 1.0 1.0,
+                           1.0 1.0, 1.0 0.4,
+                           1.0 0.3, 1.0 0.2,
+                           1.0 0.1
+                        ]
+                     }
+                  },
+                # Left Logo Texture
+                  Shape {
+                     appearance Appearance {
+	                     texture ImageTexture {
+                           url "l_graphic.jpg"
+                        }
+                     }
+                     geometry IndexedFaceSet {
+                        coord Coordinate {
+                           point [
+                           # Coordinates around face
+                               -3.01 -3.0  0.0,
+                               -3.01 -3.0  1.7,
+                               -3.01  2.0  1.7,
+                               -3.01  2.0  0.0
+                           ]
+                        }
+                        coordIndex [ 0, 1, 2, 3 ]
+                        texCoord TextureCoordinate {
+                           point [ 0.0 0.0,
+                                   1.0 0.0,
+                                   1.0 1.0,
+                                   0.0 1.0
+                           ]
+                        }
+                        texCoordIndex [ 2, 1, 0 ,3 ]
+                     }
+                  },
+                # Right Logo Texture
+                  Shape {
+                     appearance Appearance {
+                        texture ImageTexture {
+                           url "graphic.jpg"
+                        }
+                     }
+                     geometry IndexedFaceSet {
+                        coord Coordinate {
+                           point [
+                           # Coordinates around face
+                               3.01 -3.0  0.0,
+                               3.01 -3.0  1.7,
+                               3.01  2.0  1.7,
+                               3.01  2.0  0.0
+                           ]
+                        }
+                        coordIndex [ 3, 2, 1, 0 ]
+                        texCoord TextureCoordinate {
+                           point [ 0.0 0.0,
+                                   1.0 0.0,
+                                   1.0 1.0,
+                                   0.0 1.0
+                           ]
+                        }
+                        texCoordIndex [ 2, 1, 0 ,3 ]
+                     }
+                  },
+                # FRONT FRAME
+                  # Top Right
+                  Transform {
+                     translation 2.8 3.55 1.95 
+                     children [
+                        DEF Top_Frame Shape {
+                           appearance DEF Dk_Gray Appearance {
+                              material Material {
+                                 diffuseColor 0.25 0.25 0.25
+                              }
+                           }
+                           geometry Box {
+                              size 0.1 3.6 0.1
+                           }
+                        }
+                     ]
+                  },
+                  #Top Left
+                  Transform {
+                     translation -2.8 3.55 1.95 
+                     children [ USE Top_Frame ]
+                  },
+                  #Top Across
+                  Transform {
+                     translation 0.0 3.5 1.95
+                     children [
+                        DEF Horiz_Cross_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 5.6 0.1 0.1
+                           }
+                        }
+                     ]
+                  },
+                  #Top Across Forward
+                  Transform {
+                     translation 0.0 5.3 1.95
+                     children [ USE Horiz_Cross_Frame ]
+                  },
+                  #Top Vertical Forward Left
+                  Transform {
+                     translation -2.8 5.3 1.0
+                     children [
+                        DEF Vert_Cross_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 0.1 0.1 2.0
+                           }
+                        }
+                     ]
+                  },
+                  #Top Vertical Forward Right
+                  Transform {
+                     translation 2.8 5.3 1.0
+                     children [ USE Vert_Cross_Frame ]
+                  },
+                  #Top Vertical Mid Right
+                  Transform {
+                     translation 2.8 3.5 1.0
+                     children [ USE Vert_Cross_Frame ]
+                  }, 
+                  #Top Vertical Mid Left
+                  Transform {
+                     translation -2.8 3.5 1.0
+                     children [ USE Vert_Cross_Frame ]
+                  },
+                  #Bottom Left
+                  Transform {
+                     translation -2.8 3.55 -0.05 
+                     children [
+                        DEF Bottom_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 0.1 3.6 0.1
+                           }
+                        }
+                     ]
+                  },
+                  #Bottom Right
+                  Transform {
+                     translation 2.8 3.55 -0.05 
+                     children [ USE Bottom_Frame ]
+                  },
+                  #Bottom Inner Left
+                  Transform {
+                     translation -1.0 3.55 -0.05 
+                     children [ USE Bottom_Frame ]
+                  },
+                  #Bottom Inner Right
+                  Transform {
+                     translation 1.0 3.55 -0.05 
+                     children [ USE Bottom_Frame ]
+                  },
+                  #Bottom Cross Beam Right
+                  Transform {
+                     translation 1.9 5.3 -0.05 
+                     children [
+                        DEF Cross_Beam Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 1.8 0.1 0.1
+                           }
+                        }
+                     ]
+                  },
+                  #Bottom Cross Beam Left
+                  Transform {
+                     translation -1.9 5.3 -0.05 
+                     children [ USE Cross_Beam ]
+                  },
+                  # MIDDLE FRAME
+                  # Right Rear
+                  Transform {
+                     translation 2.9 -3.2 -1.5 
+                     children [
+                        DEF Vert_Mid_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 0.2 0.2 3.0
+                           }
+                        }
+                     ] 
+                  },
+                  # Right Front
+                  Transform {
+                     translation 2.9 2.5 -1.5
+                     children [
+                        USE Vert_Mid_Frame
+                     ]
+                  }, 
+                  # Left Rear
+                  Transform {
+                     translation -2.9 -3.2 -1.5
+                     children [
+                        USE Vert_Mid_Frame
+                     ]
+                  },
+                  # Left Front
+                  Transform {
+                     translation -2.9 2.5 -1.5
+                     children [
+ 	                     USE Vert_Mid_Frame
+                     ]
+                  },
+                  # Mid Front Frame
+                  Transform {
+                     translation 0.0 2.5 -2.92
+                     children [
+                        DEF Horiz_Mid_End_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 5.96 0.2 0.2
+                           }
+                        }
+                     ]
+                  },
+                  # Mid Rear Frame
+                  Transform {
+                     translation 0.0 -3.2 -2.92
+                     children [
+                        USE Horiz_Mid_End_Frame
+                     ]
+                  },
+                  # Mid Right Side Frame
+                  Transform {
+                     translation 2.9 0.2 -2.92
+                     children [
+                        DEF Horiz_Mid_Side_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 0.2 6.8 0.2
+                           }
+                        }
+                     ]
+                  },
+                  # Mid Left Side Frame
+                  Transform {
+                     translation -2.9 0.2 -2.92
+                     children [
+                        USE Horiz_Mid_Side_Frame
+                     ]
+                  },
+                  # Mid Back Frame Face
+                  Shape {
+                     appearance Appearance {
+                        texture ImageTexture {
+                           url "v_back1.jpg"
+                        }
+                     }
+                     geometry IndexedFaceSet {
+                        coord Coordinate {
+                           point [
+                           # Coordinates around face
+                              -2.9 -3.2  0.0,
+                              -2.9 -3.2 -2.9,
+                               2.9 -3.2 -2.9,
+                               2.9 -3.2  0.0
+                           ]
+                        }
+                        coordIndex [ 0, 1, 2, 3 ]
+                        texCoord TextureCoordinate {
+                           point [ 0.0 0.0,
+                                   1.0 0.0,
+                                   1.0 1.0,
+                                   0.0 1.0
+                           ]
+                        }
+                        texCoordIndex [ 3, 0, 1, 2 ]
+                     }
+                  },
+						Transform {
+							translation 2.05 -3.21 -0.9
+							rotation 0 0 1 1.571
+							scale 1.0 3.7 3.7 
+							children [
+								DEF Prop Inline { url "turbineprop_lft.wrl" }
+							]
+						}
+						Transform {
+							translation -2.05 -3.21 -0.9
+							rotation 0 0 1 1.571
+							scale 1.0 3.7 3.7 
+							children [
+								DEF Prop Inline { url "turbineprop_rt.wrl" }
+							]
+						}
+                  # Mid Front Frame Face
+                  Shape {
+                     appearance Appearance {
+                        texture ImageTexture {
+                           url "front_panel.jpg"
+                        }
+                     }
+                     geometry IndexedFaceSet {
+                        coord Coordinate {
+                           point [
+                           # Coordinates around face
+                              -2.9 2.5  0.0,
+                              -2.9 2.5 -2.9,
+                               2.9 2.5 -2.9,
+                               2.9 2.5  0.0
+                           ]
+                        }
+                        coordIndex [ 3, 2, 1, 0 ]
+                        texCoord TextureCoordinate {
+                           point [ 0.0 0.0,
+                                   1.0 0.0,
+                                   1.0 1.0,
+                                   0.0 1.0
+                           ]
+                        }
+                        texCoordIndex [ 3, 0, 1, 2 ]
+                     }
+                  },
+                  # Mid Right Side Frame Face
+                  Shape {
+                     appearance Appearance {
+                        texture ImageTexture {
+                           url "r_side.jpg"
+                        }
+                     }
+                     geometry IndexedFaceSet {
+                        coord Coordinate {
+                           point [
+                           # Coordinates around face
+                               2.9  2.5  0.0,
+                               2.9  2.5 -2.9,
+                               2.9 -3.2 -2.9,
+                               2.9 -3.2  0.0
+                           ]
+                        }
+                        coordIndex [ 3, 2, 1, 0 ]
+                        texCoord TextureCoordinate {
+                           point [ 0.0 0.0,
+                                   1.0 0.0,
+                                   1.0 1.0,
+                                   0.0 1.0
+                           ]
+                        }
+                        texCoordIndex [ 3, 0, 1, 2 ]
+                     }
+                  },
+						Transform {
+							translation -2.91 -0.2 -1
+							scale 1.0 3.3 3.3 
+							children [
+								DEF Prop Inline { url "turbineprop_rt.wrl" }
+							]
+						}
+                  # Mid Left Side Frame Face
+                  Shape {
+                     appearance Appearance {
+                        texture ImageTexture {
+                           url "l_side.jpg"
+                        }
+                     }
+                     geometry IndexedFaceSet {
+                        coord Coordinate {
+                           point [
+                           # Coordinates around face
+                               -2.9  2.5  0.0,
+                               -2.9  2.5 -2.9,
+                               -2.9 -3.2 -2.9,
+                               -2.9 -3.2  0.0
+                           ]
+                        }
+                        coordIndex [ 0, 1, 2, 3 ]
+                        texCoord TextureCoordinate {
+                           point [ 0.0 0.0,
+                                   1.0 0.0,
+                                   1.0 1.0,
+                                   0.0 1.0
+                           ]
+                        }
+                        texCoordIndex [ 3, 0, 1, 2 ]
+                     }
+                  },
+						Transform {
+							translation 2.91 -0.2 -1
+							rotation 0 0 1 3.142
+							scale 1.0 3.3 3.3 
+							children [
+								DEF Prop Inline { url "turbineprop_lft.wrl" }
+							]
+						}
+                  # Mid Bottom Frame Face
+                  Shape {
+                     appearance Appearance {
+                        material Material {
+                           diffuseColor 0.0 0.0 0.0
+                        }
+                     }
+                     geometry IndexedFaceSet {
+                        coord Coordinate {
+                           point [
+                           # Coordinates around face
+                               -2.98  2.5 -2.98,
+                                2.98  2.5 -2.98,
+                                2.98 -3.2 -2.98,
+                               -2.98 -3.2 -2.98
+                           ]
+                        }
+                        coordIndex [ 0, 1, 2, 3 ]
+                     }
+                  },
+ 
+                  # SLED FRAME
+                  # Left Rear
+                  Transform {
+                     translation 2.9 -3.0 -4.0
+                     children [
+                        DEF Vert_Sled_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 0.2 0.2 2.0
+                           }
+                        }
+                     ] 
+                  },
+                  # Right Front
+                  Transform {
+                     translation 2.9 2.0 -4.0
+                     children [
+                        USE Vert_Sled_Frame
+                     ]
+                  },
+                  # Left Rear
+                  Transform {
+                     translation -2.9 -3.0 -4.0
+                     children [
+                        USE Vert_Sled_Frame
+                     ]
+                  },
+                  # Left Front
+                  Transform {
+                     translation -2.9 2.0 -4.0
+                     children [
+    	                  USE Vert_Sled_Frame
+                     ]
+                  },
+
+                  # Sled Front Frame
+                  Transform {
+                     translation 0.0 2.0 -4.9
+                     children [
+                        DEF Horiz_Sled_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 6.0 0.2 0.2
+                           }
+                        }
+                     ]
+                  },
+                  # Sled Rear Frame
+                  Transform {
+                     translation 0.0 -3.0 -4.9
+                     children [
+                        USE Horiz_Sled_Frame
+                     ]
+                  },
+                  # Sled Right Side Frame
+                  Transform {
+                     translation 2.9 -0.5 -4.9
+                     children [
+                        DEF Horiz_Sled_Side_Frame Shape {
+                           appearance USE Dk_Gray
+                           geometry Box {
+                              size 0.2 5.0 0.2
+                           }
+                        }
+                     ]
+                  },
+                  # Sled Left Side Frame
+                  Transform {
+                     translation -2.9 -0.5 -4.9
+                     children [
+                        USE Horiz_Sled_Side_Frame
+                     ]
+                  },
+                  # Sled
+                  Transform {
+                     translation 0.0 -0.5 -4.7
+                     children [
+                        Shape {
+                           appearance DEF Aluminum Appearance {
+                              material Material {
+                                 diffuseColor     0.30 0.30 0.50
+                                 specularColor    0.70 0.70 0.80
+                                 ambientIntensity 0.30
+                                 shininess        0.10
+                              }
+                           }
+                           geometry Box {
+                              size 4.0 5.0 0.2
+                           }
+                        }
+                     ]
+                  },
+                  Transform {
+                     translation 1.9 -0.5 -4.3
+                     children [
+                        Shape {
+                           appearance USE Aluminum
+                           geometry Box {
+                              size 0.2 5.0 0.8
+                           }
+                        }
+                     ]
+                  },
+                  Transform {
+                     translation -1.9 -0.5 -4.3
+                     children [
+                        Shape {
+                           appearance USE Aluminum
+                           geometry Box {
+                              size 0.2 5.0 0.8
+                           }
+                        }
+                     ]
+                  },
+                  Transform {
+                     translation 1.6 -0.5 -4.1
+                     children [
+                        Shape {
+                           appearance USE Aluminum
+                           geometry Box {
+                              size 0.6 5.0 0.2
+                           }
+                        }
+                     ]
+                  },
+                  Transform {
+                     translation -1.6 -0.5 -4.1
+                     children [
+                        Shape {
+                           appearance USE Aluminum
+                           geometry Box {
+                              size 0.6 5.0 0.2
+                           }
+                        }
+                     ]
+                  },
+                  # EXTENTION ARM
+                  # Left Side
+                  Group {
+                  	children [
+                     	Transform {
+                        	translation -2.9 3.55 -1.3
+                          	rotation 1.0 0.0 0.0 -1.571 
+                          	children [
+										Transform {  # EXTENSION ARM
+                                 rotation 0.0 1.0 0.0 0.2
+ 											children [
+											  	DEF Arm_Cylinder Shape {
+   			                          	appearance DEF Lt_Gray Appearance {
+                                				material Material {
+                                   				diffuseColor 0.5 0.5 0.5
+                                				}
+                             				}
+     				                       	geometry Cylinder {
+        		   		                   	radius 0.1
+           		      		              	height 2.63
+   	            		              	}
+        		         	            } # end Arm Cylinder
+												DEF Sm_Arm_Cylinder Transform { 
+                    		   	        	translation 0.0 1.42 0.0
+                          			     	children Shape { 
+     													appearance USE Lt_Gray
+  														geometry Cylinder {
+															radius 0.2
+															height 0.22
+														}
+													}
+												}
+												DEF Horizontal_Arm Transform {
+                 	     			         translation 0.0 0.17 0.0
+              			     	     	      rotation 1.0 0.0 0.0 1.57
+             	      		            center 0.0 1.25 0.0
+													children [
+                       							Shape {
+															appearance USE Lt_Gray
+              		         						geometry Box {
+																size 0.2 2.5 0.2
+															}
+														}
+														Transform {
+        													translation 0.0 -1.35 -0.4
+                                               rotation 1.0 0.0 0.0 -1.57
+															children Shape {
+                  											appearance USE Aluminum
+																geometry Box {
+																	size 0.2 1.0 0.2
+																}
+															}
+														}
+														Transform {
+        													translation 0.0 -1.5 -0.8
+                                                children Shape {
+                  											appearance USE Aluminum
+	  																geometry Box {
+																		size 0.2 0.5 0.2
+																	}
+																}
+															}
+														]
+													} # END OF HORIZONTAL ARM	
+                             			]
+											}  # END EXTENSION ARM
+										]
+                        	},
+                        ]
+                     },
+                     # Right Side
+                     Group {
+                     	children [
+                     		Transform {
+                        		translation 2.9 3.55 -1.3
+                        		rotation 1.0 0.0 0.0 -1.571
+                           	children [
+											Transform {  # EXTENSION ARM
+                                    rotation 0.0 1.0 0.0 -0.2
+												children [
+												  	USE Arm_Cylinder
+													USE Sm_Arm_Cylinder
+													USE Horizontal_Arm
+                             			]
+											}  # END EXTENSION ARM
+                      			]
+									}
+								]
+							},
+
+                   # ROBOT GRABBER ARM
+                     Transform {
+                        translation -2.2 2.7 -2.9
+                        rotation 1.0 0.0 0.0 1.57
+                        children [
+                           DEF Robot_Grabber Transform {
+                              children [
+                                 Shape {   # ROBOT ARM BASE
+                                    appearance USE Lt_Gray
+                                    geometry Cylinder {
+                                       radius 0.4
+				                           height 0.1
+                                    }
+                                 },
+                               # Base - First arm joint
+                                 Group {
+                                    children [
+                                       Transform {     #DEF FirstArm 
+                                          translation 0.0 1.04 -0.16
+                                          center      0.0 -1.0 0.0
+                                          children [
+                                             # Lower arm
+                                             DEF RobotArm Shape {
+                                                appearance USE Lt_Gray
+                                                geometry Box {
+            			                              size 0.25 2.0 0.4
+						                              }
+                                             },
+                                             # First arm - second arm joint
+                                             Group {
+                                                children [
+                                                   Transform {   #DEF SecondArm 
+                                                      translation 0.0 2.0 0.0
+                                                      rotation  1.0 0.0 0.0  -2.5
+                                                      center    0.0 -1.0 0.0
+                                                      children [
+                                                         # Second arm
+                                                         USE RobotArm,
+                                                         # Second arm - third arm joint
+                                                         Group {
+                                                            children [
+                                                               Transform {   #DEF ThirdArm
+                                                                  translation 0.0 1.25 0.0
+                                                                  rotation  1.0 0.0 0.0  0.5
+                                                                  center    0.0 -0.25 0.0
+                                                                  children [
+                                                                     # Third Arm
+                                                                     Shape {
+                                                                        appearance USE Lt_Gray
+                                                                        geometry Box {
+                                                                           size 0.25 0.6 0.3
+                                                                        }
+                                                                     }, # End Third Arm
+                																		Group {
+																								children [
+																									Transform {  #DEF RobotHand
+																										translation 0.0 0.425 0.0
+																										children Shape {
+																											appearance USE Dk_Gray
+																											geometry Box {
+																												size 0.25 0.25 0.35
+																											}
+																										}
+																									}
+																									Transform {
+																										translation 0.0 0.85 -0.08
+																										children	Shape {
+																											appearance USE Lt_Gray
+																											geometry Box {
+																												size 0.25 0.6 0.15
+																											}
+																										}
+																									}
+																									Transform {
+																										translation 0.0 1.11 0.0
+																										children	Shape {
+																											appearance USE Lt_Gray
+																											geometry Box {
+																												size 0.25 0.08 0.2
+																											}
+																										} 
+																									}
+																									Transform {
+																										translation 0.0 0.82 0.08
+																										rotation 1.0 0.0 0.0 0.5
+																										center 0.0 -0.3 0.0
+																										children	[
+																											Shape {
+																												appearance USE Lt_Gray
+																												geometry Box {
+																													size 0.16 0.6 0.1
+																												}
+																											}
+																											Transform {
+																												translation 0.0 0.26 -0.08
+																												children	Shape {
+																													appearance USE Lt_Gray
+																													geometry Box {
+																														size 0.16 0.08 0.2
+																													}
+																												} 
+																											}
+																										]
+																									}
+																								]
+																							} # END Robot hand
+																						]
+																					}
+                                                            ]
+                                                         }
+                                                      ]
+                                                   } # End Second Arm
+                                                ]
+                                             }
+                                          ]
+                                       } # End First Arm
+                                    ]
+                                 }
+                              ]
+                           }
+                        ]
+                     }, #END ROBOT GRAPPER ARM LEFT
+                     Transform { #ROBOT GRABBER ARM RIGHT
+                        translation 2.2 2.7 -2.9
+                        rotation 1.0 0.0 0.0 1.57
+                        children [ USE Robot_Grabber ]
+                     }, #END ROBOT GRABBER ARM RIGHT 
+
+                    #CAMERA
+                     Group {                       
+                        children [
+                           Transform {
+                              translation -0.05 3.2 -1.25
+                              center 0.0 -1.2 0.0
+                              children [
+                                 Shape {
+                                    appearance USE Dk_Gray
+                                    geometry Cylinder {
+                                       radius 0.6
+                                       height 1.6
+                                    }
+                                 },
+                           
+                                 Transform {
+                                    translation 0.0 0.58 0.0
+                                    children Shape {
+                                       appearance USE Aluminum
+                                       geometry Sphere {
+                                          radius 0.58
+                                       }
+                                    }
+                                 },
+                              ]
+                           },
+                        ]
+                     },
+
+                     # LIGHTS
+                     SpotLight {
+										location	0 3.0 0
+	    								radius	5
+	    								direction	0.0 1.0 -0.5
+	    								beamWidth	0.362857
+	    								cutOffAngle	0.412
+	  						},
+                     #Left Bottom Light plus DEF
+							Transform {
+                        translation -2.67 4.5 -0.5
+                        rotation -0.6  -0.678  -0.281  1.0960
+                        children [
+                       	   DEF HeadLight Group {
+									   children [
+                          		   Shape {
+                          	   	   appearance USE Dk_Gray
+                               		geometry Cylinder {
+                                   		radius 0.3
+                                			height 0.3
+                              		}
+                             		},
+                             		Transform {
+                          				translation 0 -0.3 0
+                             			children [
+									   			Shape {
+                             	   			appearance Appearance {
+											   			material Material {
+												   			ambientIntensity 0.4
+													   		diffuseColor 0.22 0.15 0.0
+					   										specularColor 0.71 0.70 0.56
+						   									shininess 0.16
+                                					}
+								   					}
+                                				geometry Cylinder {
+                                   				radius 0.2
+                                	   			height 0.8
+           									   	}
+								   				}  
+									   		]
+						   				},
+							   			# Light Cone
+								   		Transform {
+	    		   							translation	0 2.3 0
+					   						rotation 1 0 0 3.142
+	    				   					children	Shape {
+	      				   					appearance	Appearance {
+								   					material	Material {
+		  							   					diffuseColor	0 0 0
+		  								   				emissiveColor	1 1 1
+											   			transparency	0.61
+							   						}
+	      			   						}
+							   			      geometry	Cone { height 6 }
+								       		}
+									     	}
+									  	
+					   					# LightShere
+	  					   				Transform {
+	    					   				translation	0 0.1 0
+	    						   			children	Shape {
+	      						   			appearance	Appearance {
+										   			material	Material {
+		  				   								ambientIntensity	1
+		  					   							diffuseColor	0 0 0
+		  							   					emissiveColor	1 1 1
+		  								   				shininess	1
+											   		}
+					   					      }
+						   				      geometry	Sphere { radius 0.2 }
+							   			   }
+	  							   		},
+                           	]
+                           }
+                        ]
+                     },
+
+                     # Top Left Light
+                     Transform {
+                        translation -1.7 3.9 0.0
+                        rotation -0.881  -0.236  -0.409  1.1597
+                        children USE HeadLight
+                     },
+
+                     # Bottom Right Light
+                     Transform {
+                        translation 1.7 3.9 0.0
+                        rotation -0.881  0.2361  0.4090  1.1597
+                        children USE HeadLight
+                     },
+
+                     # Top Right Light
+                     Transform {
+                        translation 2.4 3.8 1.0
+                        rotation -0.908  0.1601  0.3866  0.8557
+                        children USE HeadLight
+                     },
+            ]
+         }
+      ]
+   }
+
